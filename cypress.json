@@ -1,0 +1,11 @@
+{
+	"componentFolder": "cypress/__tests__/components",
+	"integrationFolder": "cypress/__tests__/integration",
+	"testFiles": "**/*.spec.{js,ts,jsx,tsx}",
+	"video": false,
+	"ignoreTestFiles": [
+		"**/1-getting-started/*.js",
+		"**/2-advanced-examples/*.js",
+		"cypress/__tests__/component-examples"
+	]
+}

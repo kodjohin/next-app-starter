@@ -1,0 +1,78 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them,
+# build the source code and run tests across different versions of node
+
+name: NextJS CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [17.x]
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: yarn
+      - run: yarn build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /next-app-starter # don't forget to change the public base path
+
+      - name: Run Cypress Integration tests
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn dev
+          wait-on: "http://localhost:3000"
+
+      - name: Run Cypress Component tests
+        uses: cypress-io/github-action@v2
+        with:
+          # we have already installed everything
+          install: false
+          # to run component tests we need to use "cypress run-ct"
+          command: yarn ct:headless
+
+      - name: Run Cypress E2E tests
+        uses: cypress-io/github-action@v2
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: out # The folder the action should deploy.
+
+      # Build for production
+      - run: yarn build
+        env:
+          NEXT_PUBLIC_BASE_PATH: "" # build for remote server
+
+
+      # - name: Install SSH Key
+      #   uses: shimataro/ssh-key-action@v2
+      #   with:
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      # - name: Adding Known Hosts
+      #   run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      # # Deploy to production
+      # - name: Deploy 🚀 with rsync
+      #   run: rsync -a ./out/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:httpdocs/
+
+      # # - run: npm install --only=prod
+      # # - run: npm run production
+
+      # - name: Deploy using ssh
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USER }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       pm2 start ecosystem.com.js

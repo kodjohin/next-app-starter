@@ -30,16 +30,16 @@ jobs:
           start: yarn dev
           wait-on: "http://localhost:3000"
 
-      - name: Run Cypress Component tests
-        uses: cypress-io/github-action@v2
-        with:
-          # we have already installed everything
-          install: false
-          # to run component tests we need to use "cypress run-ct"
-          command: yarn ct:headless
+      # - name: Run Cypress Component tests
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     # we have already installed everything
+      #     install: false
+      #     # to run component tests we need to use "cypress run-ct"
+      #     command: yarn ct:headless
 
-      - name: Run Cypress E2E tests
-        uses: cypress-io/github-action@v2
+      # - name: Run Cypress E2E tests
+      #   uses: cypress-io/github-action@v2
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5

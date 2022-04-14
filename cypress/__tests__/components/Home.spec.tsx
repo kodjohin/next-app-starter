@@ -22,7 +22,7 @@ describe("Home components testing", () => {
 		cy.get("input")
 			.focus()
 			.invoke("attr", "placeholder")
-			.should("contain", "Looking for something to wear?");
+			.should("contain", "Looking for something?");
 	});
 	it("Spinner", () => {
 		mount(<Spinner />);

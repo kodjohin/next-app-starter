@@ -1,10 +1,10 @@
 import { NextSeo } from "next-seo";
 
-const Meta = ({ title = "Site title", description = "" }) => (
+const Meta = ({ title = "Site title", description = "", url = "" }) => (
 	<>
 		<NextSeo
 			title={title}
-			description="A short description goes here."
+			description={description}
 			additionalLinkTags={[
 				{
 					rel: "apple-touch-icon",
@@ -40,9 +40,8 @@ const Meta = ({ title = "Site title", description = "" }) => (
 			]}
 			additionalMetaTags={[
 				{
-					name: "Lbk concept",
-					content:
-						"handmade dress modernwax streetwear wax fashion glamour waxaddict africanprint women girly waxprint girlgang afro madeinfrance parisienne blackwomen lbkconcept",
+					name: `${title}`,
+					content: `${description}`,
 				},
 				{
 					name: "msapplication-TileColor",
@@ -59,22 +58,21 @@ const Meta = ({ title = "Site title", description = "" }) => (
 			]}
 			openGraph={{
 				type: "website",
-				url: "https://lbkconcept.com/",
-				title: "LBK Concept",
-				description:
-					"Univers dédié aux bébés, aux femmes, aux mères et aux parents en pleine conscience",
+				url: `${url}`,
+				title: `${title}`,
+				description: `${description}`,
 				images: [
 					{
-						url: "https://lbkconcept.com/lbkconcept.png",
+						url: `${url}/image.png`,
 						width: 800,
 						height: 600,
-						alt: "baby concept Image",
+						alt: "An image of something",
 					},
 				],
 			}}
 			twitter={{
-				handle: "@lbkconcept",
-				site: "@lbkconcept",
+				handle: "@",
+				site: "@",
 				cardType: "summary_large_image",
 			}}
 		/>

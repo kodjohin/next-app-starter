@@ -38,7 +38,7 @@ const StyledNav = styled.nav`
 	}
 	li {
 		padding: 20px 15px;
-		color: var(--link);
+		color: var(--text-color);
 		cursor: pointer;
 		font-weight: 300;
 		font-size: 0.9em;
@@ -158,7 +158,7 @@ const Nav: FC = () => {
 
 	const links = [
 		{ path: "products", fr: "produits" },
-		{ path: "contact", fr: "contactez-nous" },
+		{ path: "contact", fr: "contact" },
 	];
 
 	return (

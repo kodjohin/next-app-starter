@@ -65,7 +65,7 @@ const Search: FC = () => {
 	};
 
 	return (
-		<StyledSearh>
+		<StyledSearh id="search">
 			<input
 				type="search"
 				ref={inputRef}

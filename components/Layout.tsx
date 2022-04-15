@@ -19,7 +19,7 @@ const Layout: FC<Props> = ({ children }) => {
 		<>
 			<ThemeProvider theme={defaultTheme}>
 				<GlobalStyles />
-				<Meta title="" />
+				<Meta title="" description="" url="" />
 				<div className="prime__container">
 					<Header />
 					{children}

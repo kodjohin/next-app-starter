@@ -11,40 +11,32 @@ const StyledFooter = styled.footer`
 	z-index: 9;
 	animation: 1s fadeIn;
 
-	small {
-		padding: 6px 10px;
-		background-color: ${(props) => props.theme.fontColor};
-		font-weight: 300;
-		color: #fff;
-	}
 	.footer__main {
 		.footer__container {
 			display: flex;
+			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			padding: 5px;
-			height: 40px;
+			height: 100px;
 			gap: 10px;
-			@media (min-width: 768px) {
-				max-width: 768px;
-				margin: auto;
-			}
 		}
 		.footer__social {
 			display: flex;
 			list-style: none;
 			background-color: #fff;
+			flex-wrap: wrap;
+
 			.item {
 				padding: 5px 10px;
-				height: 26px;
 			}
 		}
-		:hover {
-			.footer__container {
-				background-color: ${(props) => props.theme.body};
-				color: ${(props) => props.theme.fontColor};
-				transition: background-color 0.3s ease-out;
-			}
+
+		small {
+			padding: 6px 10px;
+			background-color: ${(props) => props.theme.fontColor};
+			font-weight: 300;
+			color: ${(props) => props.theme.body};
 		}
 	}
 `;
@@ -54,8 +46,8 @@ const Footer: FC = () => {
 		<StyledFooter>
 			<div className="footer__main">
 				<div className="footer__container">
-					<small>© website 2022</small>
 					<Social />
+					<small>© website 2022</small>
 				</div>
 			</div>
 		</StyledFooter>

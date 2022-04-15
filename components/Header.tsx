@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import Nav from "./Nav";
 import Logo from "./Logo";
 import styled from "styled-components";
@@ -23,10 +23,20 @@ const StyledHeader = styled.header`
 			justify-content: space-between;
 			align-items: center;
 			padding: 0 20px;
-			@media (min-width: 768px) {
-				max-width: 768px;
-				margin: auto;
+			.header__nav_search {
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
+		}
+		#search {
+			position: absolute;
+			z-index: 10;
+			top: 84px;
+			right: 0;
+			background-color: whitesmoke;
+			padding: 10px;
+			width: 100vw;
 		}
 	}
 	.transparent {
@@ -40,17 +50,31 @@ const StyledHeader = styled.header`
 		transform: translateY(-80px);
 		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 	}
+	@media (min-width: 768px) {
+		.header__nav_search {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			#search {
+				position: initial;
+				width: initial;
+				background-color: initial;
+				padding: 0;
+			}
+		}
+	}
 `;
 
-let previousScrollPos: number = 0;
 const Header: FC = () => {
 	return (
 		<StyledHeader>
 			<div className="header__main transparent">
 				<div className="header__container">
 					<Logo />
-					<Search />
-					<Nav />
+					<div className="header__nav_search">
+						<Search />
+						<Nav />
+					</div>
 				</div>
 			</div>
 		</StyledHeader>

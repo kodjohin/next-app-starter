@@ -1,9 +1,16 @@
-import type { AppProps } from "next/app";
-import Layout from "../components/Layout";
-import { AppProvider } from "../context/AppState";
-import { useEffect, useState } from "react";
-import "../styles/globals.css";
 import { DefaultSeo } from "next-seo";
+import type { AppProps } from "next/app";
+import { useEffect, useState } from "react";
+import { AppProvider } from "../context/AppState";
+
+import Layout from "../components/Layout";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+
+import "../styles/globals.css";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "../styles/sc-global";
+import { defaultTheme } from "../styles/themes";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const [hasMounted, setHasMounted] = useState(false);
@@ -13,19 +20,26 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {
 		setHasMounted(true);
 	}, []);
-	if (!hasMounted) return null;
+	if (!hasMounted) return <Layout>{null}</Layout>;
+
 	return (
 		<AppProvider>
 			<DefaultSeo
-				titleTemplate="%s |Site title"
+				titleTemplate="%s | Site title"
 				openGraph={{
 					type: "website",
 					locale: "fr",
 					url: "https://website.com/",
 				}}
 			/>
+
 			<Layout>
-				<Component {...pageProps} />
+				<ThemeProvider theme={defaultTheme}>
+					<GlobalStyles />
+					<Header />
+					<Component {...pageProps} />
+					<Footer />
+				</ThemeProvider>
 			</Layout>
 		</AppProvider>
 	);

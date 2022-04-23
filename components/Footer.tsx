@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Social from "./Social";
 
 const StyledFooter = styled.footer`
-	width: 100%;
+	width: 100vw;
 	box-shadow: 0 0px 1px 0 var(--sub-color);
 	/* position: fixed; */
 	/* bottom: 0; */

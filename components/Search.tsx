@@ -3,7 +3,7 @@ import { useRef, KeyboardEvent, MutableRefObject, FC } from "react";
 import styled from "styled-components";
 
 const StyledSearh = styled.div`
-	width: 300px;
+	width: 350px;
 	display: flex;
 	justify-content: flex-end;
 	input {

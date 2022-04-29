@@ -6,6 +6,7 @@ import { AppProvider } from "../context/AppState";
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Main from "../components/Main";
 
 import "../styles/globals.css";
 import { ThemeProvider } from "styled-components";
@@ -37,7 +38,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<ThemeProvider theme={defaultTheme}>
 					<GlobalStyles />
 					<Header />
-					<Component {...pageProps} />
+					<Main>
+						<Component {...pageProps} />
+					</Main>
 					<Footer />
 				</ThemeProvider>
 			</Layout>
